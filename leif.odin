@@ -5,7 +5,7 @@ foreign import "system:leif"
 
 import _c "core:c"
 
-MenuItemCallback :: #type proc(unamed0: ^u32)
+MenuItemCallback :: #type proc(menu_item: ^u32)
 
 TextureFiltering :: enum i32 {
 	LfTexFilterLinear = 0,
@@ -98,9 +98,9 @@ InputField :: struct {
 	selection_dir:            i32,
 	mouse_dir:                i32,
 	init:                     bool,
-	char_callback:            #type proc(unamed0: _c.char),
-	insert_override_callback: #type proc(unamed0: rawptr),
-	key_callback:             #type proc(unamed0: rawptr),
+	char_callback:            #type proc(char: _c.char),
+	insert_override_callback: #type proc(data: rawptr),
+	key_callback:             #type proc(data: rawptr),
 	retain_height:            bool,
 }
 

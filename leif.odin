@@ -8,16 +8,16 @@ import _c "core:c"
 MenuItemCallback :: #type proc(menu_item: ^u32)
 
 TextureFiltering :: enum i32 {
-	LfTexFilterLinear = 0,
-	LfTexFilterNearest,
+	TEX_FILTER_LINEAR = 0,
+	TEX_FILTER_NEAREST,
 }
 
 ClickableItemState :: enum i32 {
-	LfReleased = -1,
-	LfIdle     = 0,
-	LfHovered  = 1,
-	LfClicked  = 2,
-	LfHeld     = 3,
+	RELEASED = -1,
+	IDLE     = 0,
+	HOVERED  = 1,
+	CLICKED  = 2,
+	HELDz    = 3,
 }
 
 Color :: struct {
@@ -327,8 +327,8 @@ foreign leif {
 	@(link_name = "_lf_button_loc")
 	button :: proc(text: cstring, file: cstring = #file, line: i32 = #line) -> ClickableItemState ---
 
-	@(link_name = "_lf_button_wide_loc")
-	button_wide :: proc(text: ^_c.wchar_t, file: cstring = #file, line: i32 = #line) -> ClickableItemState ---
+	// @(link_name = "_lf_button_wide_loc")
+	// button_wide :: proc(text: ^_c.wchar_t, file: cstring = #file, line: i32 = #line) -> ClickableItemState ---
 
 	@(link_name = "_lf_image_button_loc")
 	image_button :: proc(img: Texture, file: cstring = #file, line: i32 = #line) -> ClickableItemState ---
@@ -339,11 +339,11 @@ foreign leif {
 	@(link_name = "_lf_button_fixed_loc")
 	button_fixed :: proc(text: cstring, width: _c.float, height: _c.float, file: cstring = #file, line: i32 = #line) -> ClickableItemState ---
 
-	@(link_name = "_lf_button_fixed_wide_loc")
-	button_fixed_wide :: proc(text: ^_c.wchar_t, width: _c.float, height: _c.float, file: cstring = #file, line: i32 = #line) -> ClickableItemState ---
+	// @(link_name = "_lf_button_fixed_wide_loc")
+	// button_fixed_wide :: proc(text: ^_c.wchar_t, width: _c.float, height: _c.float, file: cstring = #file, line: i32 = #line) -> ClickableItemState ---
 
-	@(private)
 	@(link_name = "_lf_slider_int_loc")
+	@(private)
 	slider_int_loc :: proc(slider: ^Slider, file: cstring = #file, line: i32 = #line) -> ClickableItemState ---
 
 	@(link_name = "_lf_progress_bar_val_loc")
@@ -358,23 +358,23 @@ foreign leif {
 	@(link_name = "_lf_checkbox_loc")
 	checkbox :: proc(text: cstring, val: ^bool, tick_color: Color, tex_color: Color, file: cstring = #file, line: i32 = #line) -> ClickableItemState ---
 
-	@(link_name = "_lf_checkbox_wide_loc")
-	checkbox_wide :: proc(text: ^_c.wchar_t, val: ^bool, tick_color: Color, tex_color: Color, file: cstring = #file, line: i32 = #line) -> ClickableItemState ---
+	// @(link_name = "_lf_checkbox_wide_loc")
+	// checkbox_wide :: proc(text: ^_c.wchar_t, val: ^bool, tick_color: Color, tex_color: Color, file: cstring = #file, line: i32 = #line) -> ClickableItemState ---
 
 	@(link_name = "_lf_menu_item_list_loc")
 	menu_item_list :: proc(items: ^cstring, item_count: u32, selected_index: i32, per_cb: MenuItemCallback, vertical: bool, file: cstring = #file, line: i32 = #line) -> i32 ---
 
-	@(link_name = "_lf_menu_item_list_loc_wide")
-	menu_item_list_wide :: proc(items: ^^_c.wchar_t, item_count: u32, selected_index: i32, per_cb: MenuItemCallback, vertical: bool, file: cstring = #file, line: i32 = #line) -> i32 ---
+	// @(link_name = "_lf_menu_item_list_loc_wide")
+	// menu_item_list_wide :: proc(items: ^^_c.wchar_t, item_count: u32, selected_index: i32, per_cb: MenuItemCallback, vertical: bool, file: cstring = #file, line: i32 = #line) -> i32 ---	
 
 	@(link_name = "_lf_dropdown_menu_loc")
 	dropdown_menu :: proc(items: ^cstring, placeholder: cstring, item_count: u32, width: _c.float, height: _c.float, selected_index: ^i32, opened: ^bool, file: cstring = #file, line: i32 = #line) ---
 
-	@(link_name = "_lf_dropdown_menu_loc_wide")
-	dropdown_menu_wide :: proc(items: ^^_c.wchar_t, placeholder: ^_c.wchar_t, item_count: u32, width: _c.float, height: _c.float, selected_index: ^i32, opened: ^bool, file: cstring) ---
+	// @(link_name = "_lf_dropdown_menu_loc_wide")
+	// dropdown_menu_wide :: proc(items: ^^_c.wchar_t, placeholder: ^_c.wchar_t, item_count: u32, width: _c.float, height: _c.float, selected_index: ^i32, opened: ^bool, file: cstring) ---
 
-	@(private)
 	@(link_name = "_lf_input_text_loc")
+	@(private)
 	input_text_loc :: proc(input: ^InputField, file: cstring = #file, line: i32 = #line) ---
 
 	@(link_name = "_lf_input_int_loc")
@@ -408,6 +408,7 @@ foreign leif {
 	get_grabbed_div :: proc() -> Div ---
 
 	@(link_name = "_lf_begin_loc")
+	@(private)
 	begin :: proc(file: cstring = #file, line: i32 = #line) ---
 
 	@(link_name = "lf_end")
@@ -422,11 +423,11 @@ foreign leif {
 	@(link_name = "lf_text_dimension_ex")
 	text_dimension_ex :: proc(str: cstring, wrap_point: _c.float) -> vec2s ---
 
-	@(link_name = "lf_text_dimension_wide")
-	text_dimension_wide :: proc(str: ^_c.wchar_t) -> vec2s ---
+	// @(link_name = "lf_text_dimension_wide")
+	// text_dimension_wide :: proc(str: ^_c.wchar_t) -> vec2s ---
 
-	@(link_name = "lf_text_dimension_wide_ex")
-	text_dimension_wide_ex :: proc(str: ^_c.wchar_t, wrap_point: _c.float) -> vec2s ---
+	// @(link_name = "lf_text_dimension_wide_ex")
+	// text_dimension_wide_ex :: proc(str: ^_c.wchar_t, wrap_point: _c.float) -> vec2s ---
 
 	@(link_name = "lf_button_dimension")
 	button_dimension :: proc(text: cstring) -> vec2s ---
@@ -437,8 +438,8 @@ foreign leif {
 	@(link_name = "lf_text")
 	text :: proc(text: cstring) ---
 
-	@(link_name = "lf_text_wide")
-	text_wide :: proc(text: ^_c.wchar_t) ---
+	// @(link_name = "lf_text_wide")
+	// text_wide :: proc(text: ^_c.wchar_t) ---
 
 	@(link_name = "lf_set_text_wrap")
 	set_text_wrap :: proc(wrap: bool) ---

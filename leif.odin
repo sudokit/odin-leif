@@ -408,7 +408,6 @@ foreign leif {
 	get_grabbed_div :: proc() -> Div ---
 
 	@(link_name = "_lf_begin_loc")
-	@(private)
 	begin :: proc(file: cstring = #file, line: i32 = #line) ---
 
 	@(link_name = "lf_end")

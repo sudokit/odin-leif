@@ -16,7 +16,6 @@ slider_int_inl_ex :: proc(
 ) {
 	@(static)
 	slider: Slider
-	// 	Slider {
 	slider.val = slider_val
 	slider.handle_pos = 0
 	slider.min = slider_min
@@ -25,7 +24,6 @@ slider_int_inl_ex :: proc(
 	slider.height = slider_height
 	slider.handle_size = slider_handle_size
 	state^ = slider_int_loc(&slider)
-	// }
 }
 
 input_text_inl_ex :: proc(
@@ -36,14 +34,12 @@ input_text_inl_ex :: proc(
 ) {
 	@(static)
 	input: InputField
-	// {
 	input.cursor_index = 0
 	input.width = input_width
 	input.buf = buffer
 	input.buf_size = buffer_size
 	input.placeholder = placeholder_str
 	input.selected = false
-	// }
 	input_text_loc(&input)
 }
 
